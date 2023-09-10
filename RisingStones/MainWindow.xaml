@@ -1,0 +1,32 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RisingStones"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="RisingStones.MainWindow"
+        mc:Ignorable="d"
+        Title="RisingStone" Height="950" Width="450"
+        Loaded="Window_Loaded" SourceInitialized="Window_SourceInitialized" WindowStartupLocation="CenterScreen"
+        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
+    >
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Padding="0,3,0,3">
+                <MenuItem Header="Page">
+                    <MenuItem Header="Home" Command="{Binding PageNavigateCommand}" CommandParameter="https://ff14risingstones.web.sdo.com/mob/index.html#/index" />
+                    <MenuItem Header="Mine" Command="{Binding PageNavigateCommand}" CommandParameter="https://ff14risingstones.web.sdo.com/mob/index.html#/mine" />
+                    <MenuItem Header="MyCollect" Command="{Binding PageNavigateCommand}" CommandParameter="https://ff14risingstones.web.sdo.com/mob/index.html#/mcollect" />
+                </MenuItem>
+                <MenuItem Header="User">
+                    <MenuItem Header="Logout" Command="{Binding UserLogoutCommand}" />
+                </MenuItem>
+                <MenuItem Header="AspectRatio">
+                    <MenuItem Header="450:950" Click="MenuAspectRatio_Click" />
+                </MenuItem>
+            </Menu>
+            <wv2:WebView2 Name="webView" CoreWebView2InitializationCompleted="webView_CoreWebView2InitializationCompleted" NavigationCompleted="webView_NavigationCompleted" NavigationStarting="webView_NavigationStarting" />
+        </DockPanel>
+
+    </Grid>
+</Window>
